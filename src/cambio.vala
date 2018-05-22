@@ -36,8 +36,8 @@ public class Main : Object
 	string[] lista_box_masa = {"Tonelada","kN","kg","hg","g"};
 	string[] lista_box_fuerza = {"N","kgf","Dyna","Joule/metro","Pa/m²"};
 	string[] lista_box_tiempo = {"hora","min","s","dia","ano"};
-	string[] lista_box_velocidad = {"km/h","m/s","cm/s","km/s","vel_luz"};
-	string[] lista_box_longitud = {"km","m","dm","cm","mm"};
+	string[] lista_box_velocidad = {"km/h","m/s","km/s"};
+	string[] lista_box_longitud = {"km","m","cm","mm"};
 	string[] lista_box_densidad = {"g/cm³","kg/m³","g/m³","mg/m³"};
 	string[] lista_box_area = {"km²","m²","cm²"};
 
@@ -89,7 +89,7 @@ public class Main : Object
 	ComboBox box_tiempo_entrada;
 	ComboBox box_tiempo_saida;
 
-
+	AboutDialog dialog;
 
 
 	enum Column {
@@ -158,6 +158,8 @@ public class Main : Object
 			criar_liststore_para_combobox(box_area_saida, liststore_area_s, lista_box_area);
 
 			var window = builder.get_object ("window") as Window;
+			dialog = builder.get_object("about_dialog") as AboutDialog;
+
 
 
 			/* ANJUTA: Widgets initialization for cambio.ui - DO NOT REMOVE */
@@ -174,6 +176,19 @@ public class Main : Object
 	public void on_destroy (Widget window)
 	{
 		Gtk.main_quit();
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_dialog_close_clicked (Widget window)
+	{
+		dialog.hide();
+	}
+
+
+	[CCode (instance_pos = -1)]
+	public void on_acerca (Widget window)
+	{
+		dialog.present();
 	}
 
 	private void criar_liststore_para_combobox(ComboBox box, Gtk.ListStore liststore, string[] lista){
@@ -1095,6 +1110,407 @@ public class Main : Object
 
 	}
 
+	[CCode (instance_pos = -1)]
+	public void on_but_aplicar_velocidad_clicked (Widget window)
+	{
+
+		//calcula a convercion
+		double aux =  spin_velocidad.get_value();
+
+		switch(box_velocidad_entrada.get_active()){
+		case 0:
+			//k/h
+			switch(box_velocidad_saida.get_active()){
+			case 0:
+				//km/h
+				//
+				break;
+			case 1:
+				//m/s
+				aux *= 0.277778;
+				break;
+			case 2:
+				//km/s
+				aux *= 0.00027778;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 1:
+			//m/s
+			switch(box_velocidad_saida.get_active()){
+			case 0:
+				//km/h
+				aux *= 3.6;
+				break;
+			case 1:
+				//m/s
+				//
+				break;
+			case 2:
+				//km/s
+				aux *= 0.001;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 2:
+			//km/s
+			switch(box_velocidad_saida.get_active()){
+			case 0:
+				//km/h
+				aux *= 3600;
+				break;
+			case 1:
+				//m/s
+				aux *= 1000;
+				break;
+			case 2:
+				//km/s
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+		escribir_entrada(spin_velocidad,lista_box_velocidad, box_velocidad_entrada, entry_velocidad_entrada);
+		escribir_saida(aux, spin_velocidad, lista_box_velocidad, box_velocidad_saida, entry_velocidad_saida);
+
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_but_aplicar_area_clicked (Widget window)
+	{
+
+		//calcula a convercion
+		double aux =  spin_area.get_value();
+
+		switch(box_area_entrada.get_active()){
+		case 0:
+			//km²
+			switch(box_area_saida.get_active()){
+			case 0:
+				//km²
+				//
+				break;
+			case 1:
+				//m²
+				aux *= 1000000;
+				break;
+			case 2:
+				//cm²
+				aux *= 10000000000;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 1:
+			//m²
+			switch(box_area_saida.get_active()){
+			case 0:
+				//km²
+				aux *= 0.000001;
+				break;
+			case 1:
+				//m²
+				//
+				break;
+			case 2:
+				//cm²
+				aux *= 10000;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 2:
+			//cm²
+			switch(box_area_saida.get_active()){
+			case 0:
+				//km²
+				aux *= Math.pow(10,-10);
+				break;
+			case 1:
+				//m²
+				aux *= 0.0001;
+				break;
+			case 2:
+				//cm2
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+		escribir_entrada(spin_area,lista_box_area, box_area_entrada, entry_area_entrada);
+		escribir_saida(aux, spin_area, lista_box_area, box_area_saida, entry_area_saida);
+
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_but_aplicar_longitud_clicked (Widget window)
+	{
+
+		//calcula a convercion
+		double aux =  spin_longitud.get_value();
+
+		switch(box_longitud_entrada.get_active()){
+		case 0:
+			//km
+			switch(box_longitud_saida.get_active()){
+			case 0:
+				//km
+				//
+				break;
+			case 1:
+				//m
+				aux *= 1000;
+				break;
+			case 2:
+				//cm
+				aux *= 100000;
+				break;
+			case 3:
+				//mm
+				aux *= 1000000;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 1:
+			//m
+			switch(box_longitud_saida.get_active()){
+			case 0:
+				//km
+				aux *= 0.001;
+				break;
+			case 1:
+				//m
+				//
+				break;
+			case 2:
+				//cm
+				aux *= 100;
+				break;
+			case 3:
+				//mm
+				aux *= 1000;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 2:
+			//cm
+			switch(box_longitud_saida.get_active()){
+			case 0:
+				//km
+				aux *= 0.00001;
+				break;
+			case 1:
+				//m
+				aux *= 0.01;
+				break;
+			case 2:
+				//cm
+				break;
+			case 3:
+				//mm
+				aux *= 10;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 3:
+			//mm
+			switch(box_longitud_saida.get_active()){
+			case 0:
+				//km
+				aux *= 0.000001;
+				break;
+			case 1:
+				//m
+				aux *= 0.001;
+				break;
+			case 2:
+				//cm
+				aux *= 0.1;
+				break;
+			case 3:
+				//mm
+				//aux *= ;
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+		escribir_entrada(spin_longitud,lista_box_longitud, box_longitud_entrada, entry_longitud_entrada);
+		escribir_saida(aux, spin_longitud, lista_box_longitud, box_longitud_saida, entry_longitud_saida);
+
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_but_aplicar_tiempo_clicked (Widget window)
+	{
+
+		//calcula a convercion
+		double aux =  spin_tiempo.get_value();
+
+		switch(box_tiempo_entrada.get_active()){
+		case 0:
+			//hora
+			switch(box_tiempo_saida.get_active()){
+			case 0:
+				//h
+				//
+				break;
+			case 1:
+				//min
+				aux *= 60;
+				break;
+			case 2:
+				//s
+				aux *= 3600;
+				break;
+			case 3:
+				//dia
+				aux *= 0.041667;
+				break;
+			case 4:
+				//ano
+				aux *= 0.00011408;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 1:
+			//min
+			switch(box_tiempo_saida.get_active()){
+			case 0:
+				//h
+				aux *= 0.016667;
+				break;
+			case 1:
+				//min
+				//
+				break;
+			case 2:
+				//s
+				aux *= 60;
+				break;
+			case 3:
+				//dia
+				aux *= 0.00069444;
+				break;
+			case 4:
+				//ano
+				aux *= 0.0000019013;
+				break;
+
+			default:
+				break;
+			}
+			break;
+		case 2:
+			//s
+			switch(box_tiempo_saida.get_active()){
+			case 0:
+				//h
+				aux *= 0.00027778;
+				break;
+			case 1:
+				//min
+				aux *= 0.016667;
+				break;
+			case 2:
+				//s
+				break;
+			case 3:
+				//dia
+				aux *= 0.0000115741;
+				break;
+			case 4:
+				//ano
+				aux *= 3.168808781402895*Math.pow(10,-8);
+				break;
+			default:
+				break;
+			}
+			break;
+		case 3:
+			//dia
+			switch(box_tiempo_saida.get_active()){
+			case 0:
+				//h
+				aux *= 24;
+				break;
+			case 1:
+				//min
+				aux *= 1440;
+				break;
+			case 2:
+				//s
+				aux *= 86400;
+				break;
+			case 3:
+				//dia
+				//aux *= 0.00001;
+				break;
+			case 4:
+				//ano
+				aux *= 0.00273785;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 4:
+			//ano
+			switch(box_tiempo_saida.get_active()){
+			case 0:
+				//h
+				aux *= 8766;
+				break;
+			case 1:
+				//min
+				aux *= 525960;
+				break;
+			case 2:
+				//s
+				aux *= 31557600;
+				break;
+			case 3:
+				//dia
+				aux *= 365.25;
+				break;
+			case 4:
+				//ano
+				//aux *= ;
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+		escribir_entrada(spin_tiempo,lista_box_tiempo, box_tiempo_entrada, entry_tiempo_entrada);
+		escribir_saida(aux, spin_tiempo, lista_box_tiempo, box_tiempo_saida, entry_tiempo_saida);
+
+	}
 
 	static int main (string[] args)
 	{

@@ -340,7 +340,8 @@ top_builddir = ..
 top_srcdir = ..
 uidir = $(pkgdatadir)/ui
 ui_DATA = cambio.ui \
-	cambio.png
+	cambio.png \
+	about.ui
 
 AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\" \

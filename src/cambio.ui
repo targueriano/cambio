@@ -105,7 +105,7 @@
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <signal name="destroy" handler="main_on_destroy" swapped="no"/>
+                        <signal name="activate" handler="main_on_destroy" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -181,12 +181,13 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem">
+                      <object class="GtkImageMenuItem" id="imagemenuitem1">
                         <property name="label">gtk-about</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <signal name="activate" handler="main_on_acerca" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -1114,6 +1115,7 @@
                                         <property name="use_stock">True</property>
                                         <property name="image_position">right</property>
                                         <property name="always_show_image">True</property>
+                                        <signal name="clicked" handler="main_on_but_aplicar_velocidad_clicked" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left_attach">4</property>
@@ -1265,6 +1267,7 @@
                                         <property name="use_stock">True</property>
                                         <property name="image_position">right</property>
                                         <property name="always_show_image">True</property>
+                                        <signal name="clicked" handler="main_on_but_aplicar_area_clicked" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left_attach">4</property>
@@ -1420,6 +1423,7 @@
                                         <property name="use_stock">True</property>
                                         <property name="image_position">right</property>
                                         <property name="always_show_image">True</property>
+                                        <signal name="clicked" handler="main_on_but_aplicar_longitud_clicked" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left_attach">4</property>
@@ -1529,6 +1533,7 @@
                                         <property name="use_stock">True</property>
                                         <property name="image_position">right</property>
                                         <property name="always_show_image">True</property>
+                                        <signal name="clicked" handler="main_on_but_aplicar_tiempo_clicked" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left_attach">4</property>
@@ -1666,7 +1671,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Medidores</property>
+                <property name="label" translatable="yes">Medidas</property>
               </object>
               <packing>
                 <property name="tab_fill">False</property>
@@ -1737,6 +1742,64 @@
             <property name="fill">True</property>
             <property name="position">4</property>
           </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAboutDialog" id="about_dialog">
+    <property name="can_focus">False</property>
+    <property name="modal">True</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
+    <property name="transient_for">window</property>
+    <property name="attached_to">window</property>
+    <property name="program_name">Cambio</property>
+    <property name="version">2018.1</property>
+    <property name="comments" translatable="yes">Software para fins acadêmicos, não comerciais, voltado para a área de química e física.</property>
+    <property name="website">https://github.com/targueriano/cambio</property>
+    <property name="website_label" translatable="yes">github:/targueriano/cambio</property>
+    <property name="authors">Taylan Branco Meurer		</property>
+    <property name="artists">Taylan Branco Meurer</property>
+    <property name="logo">cambio.png</property>
+    <property name="license_type">gpl-3-0</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkButton" id="dialog_close">
+                <property name="label">gtk-quit</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <property name="always_show_image">True</property>
+                <signal name="clicked" handler="main_on_dialog_close_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>

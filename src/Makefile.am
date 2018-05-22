@@ -5,7 +5,8 @@
 
 uidir = $(pkgdatadir)/ui
 ui_DATA = cambio.ui \
-	cambio.png
+	cambio.png \
+	about.ui
 
 
 AM_CPPFLAGS = \
