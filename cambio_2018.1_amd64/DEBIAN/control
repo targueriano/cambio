@@ -1,0 +1,11 @@
+source: src
+Section: misc
+Priority: optional
+Standards-Version: 2018.1
+Package: Cambio
+Version: 2018.1
+Maintainer: Taylan Branco Meurer <tbmeurer@gmail.com>
+Depends: 
+Architecture: amd64
+Copyright: GPL
+Description: Projeto com fins acadêmicos, não comercial, voltado para problemas relacionados à química.
