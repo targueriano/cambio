@@ -29,8 +29,8 @@ public class Main : Object
 	 * Uncomment this line when you are done testing and building a tarball
 	 * or installing
 	 */
-	const string UI_FILE = Config.PACKAGE_DATA_DIR + "/ui/" + "cambio.ui";
-	//const string UI_FILE = "cambio.ui";
+	//const string UI_FILE = Config.PACKAGE_DATA_DIR + "/ui/" + "cambio.ui";
+	const string UI_FILE = "cambio.ui";
 	string[] lista_box_presion = {"MegaPascal", "Pascal", "Bar", "atm", "kgf/cm²","kgf/m²","mmHG"};
 	string[] lista_box_volumen = {"km³","m³","litro","dm³","cm³"};
 	string[] lista_box_masa = {"Tonelada","kN","kg","hg","g"};

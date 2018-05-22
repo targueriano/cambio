@@ -70,7 +70,7 @@
     <property name="window_position">center</property>
     <property name="default_width">800</property>
     <property name="default_height">400</property>
-    <property name="icon">../icons/cambio.png</property>
+    <property name="icon">cambio.png</property>
     <signal name="destroy" handler="main_on_destroy" swapped="no"/>
     <child>
       <object class="GtkBox">
@@ -1750,7 +1750,7 @@
     <property name="can_focus">False</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
-    <property name="icon">../icons/cambio.png</property>
+    <property name="icon">cambio.png</property>
     <property name="type_hint">dialog</property>
     <property name="deletable">False</property>
     <property name="transient_for">window</property>
@@ -1762,7 +1762,7 @@
     <property name="website_label" translatable="yes">github:/targueriano/cambio</property>
     <property name="authors">Taylan Branco Meurer		</property>
     <property name="artists">Taylan Branco Meurer</property>
-    <property name="logo">../icons/cambio.png</property>
+    <property name="logo">cambio.png</property>
     <property name="license_type">gpl-3-0</property>
     <child internal-child="vbox">
       <object class="GtkBox">
