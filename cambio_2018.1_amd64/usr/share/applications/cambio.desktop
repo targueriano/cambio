@@ -1,12 +1,17 @@
 [Desktop Entry]
 Version=2018.1
 Type=Application
-Name=Cambio
-Comment=Software com fins acadêmicos voltado para problemas de química.
+Name=cambio
+Comment=Software para fins académicos
 Exec=./usr/local/bin/cambio
 Terminal=false
 MimeType=text/plain;
-Icon=cambio.png
+Icon=/usr/local/cambio/icons/cambio.png
 Categories=Education;
 StartupNotify=true
 Actions=Window;Document;
+
+
+
+
+Name[es_AR]=cambio
