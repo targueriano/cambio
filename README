@@ -1,0 +1,22 @@
+CAMBIO
+
+Cambio es un project con finalidad académica, no comercial, dirigida para problemas de química, principalmente soluciones y cambio de unidades.
+Él fue escrito en lenguage vala y aun no está finalizado. 
+
+
+Para INSTALAR (cambio_version_arch.deb):
+
+1. # dpkg -i cambio_version_arch.deb
+
+
+Para INSTALAR (project full):
+
+1. ./configure
+2. make
+3. # checkinstall (o puede utilizar directo "# make install")
+
+¹ Checkinstall genera un archivo .deb que facilita para administrar y eliminar lo paquete.
+² El project es instalado en /usr/local/
+
+
+ 
